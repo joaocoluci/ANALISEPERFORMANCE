@@ -1,0 +1,97 @@
+{
+  "_comentario": [
+    "Catalogo dos scripts de verificacao, por dialeto de banco.",
+    "O coletor le este arquivo, cruza com o dialeto detectado e devolve em",
+    "evidencias.json['banco']['scripts'] apenas os scripts aplicaveis.",
+    "",
+    "Campos de cada item:",
+    "  id        chave estavel, citada pela secao de verificacoes complementares",
+    "  pergunta  o que o script responde, em linguagem de negocio",
+    "  responde  uma frase sobre a saida do script",
+    "  tipo      leitura | ddl | objeto   (ddl e objeto exigem aviso de janela)",
+    "  origem    checklist | skill        (skill = autoral, nao homologado)",
+    "  arquivos  nome do arquivo por dialeto; dialeto ausente e lacuna conhecida"
+  ],
+  "itens": [
+    {
+      "id": "indices-fk",
+      "pergunta": "Ha chave estrangeira sem indice?",
+      "responde": "Lista as colunas de chave estrangeira sem indice de apoio e monta o comando de criacao.",
+      "tipo": "ddl",
+      "origem": {"oracle": "checklist", "sqlserver": "skill"},
+      "arquivos": {
+        "oracle": "oracle-indices-fk.sql",
+        "sqlserver": "sqlserver-indices-fk.sql"
+      }
+    },
+    {
+      "id": "sessoes-ativas",
+      "pergunta": "Quais sessoes estao ativas no banco, e com qual comando?",
+      "responde": "Sessoes em execucao, com o comando, o tempo decorrido e a maquina de origem.",
+      "tipo": "leitura",
+      "origem": {"oracle": "checklist", "sqlserver": "skill"},
+      "arquivos": {
+        "oracle": "oracle-sessoes-ativas.sql",
+        "sqlserver": "sqlserver-sessoes-ativas.sql"
+      }
+    },
+    {
+      "id": "bloqueios",
+      "pergunta": "Ha bloqueio longo entre sessoes?",
+      "responde": "Pares bloqueador e bloqueado, com o comando das duas pontas e o tempo de espera.",
+      "tipo": "leitura",
+      "origem": {"oracle": "checklist", "sqlserver": "skill"},
+      "arquivos": {
+        "oracle": "oracle-bloqueios.sql",
+        "sqlserver": "sqlserver-bloqueios.sql"
+      }
+    },
+    {
+      "id": "estatisticas",
+      "pergunta": "As estatisticas de otimizacao estao atualizadas?",
+      "responde": "Data da ultima coleta de estatisticas por tabela, com o volume de linhas.",
+      "tipo": "leitura",
+      "origem": {"oracle": "checklist", "sqlserver": "skill"},
+      "arquivos": {
+        "oracle": "oracle-estatisticas.sql",
+        "sqlserver": "sqlserver-estatisticas.sql"
+      }
+    },
+    {
+      "id": "busca-textual-objetos",
+      "pergunta": "Qual objeto personalizado menciona uma tabela ou um termo?",
+      "responde": "Procedures, dashboards, campos calculados e acoes que contem o texto procurado.",
+      "tipo": "leitura",
+      "origem": {"oracle": "checklist"},
+      "arquivos": {
+        "oracle": "oracle-busca-textual-objetos.sql"
+      },
+      "lacuna": "Sem equivalente para SQL Server no acervo da skill."
+    },
+    {
+      "id": "config-base",
+      "pergunta": "A base atende as configuracoes obrigatorias do checklist?",
+      "responde": "Estado de snapshot isolation, read committed snapshot, AllowPageLocks e Lock Escalation.",
+      "tipo": "leitura",
+      "origem": {"sqlserver": "skill"},
+      "arquivos": {
+        "sqlserver": "sqlserver-config-base.sql"
+      },
+      "lacuna": "Verificacao especifica de SQL Server. Nao se aplica a Oracle."
+    },
+    {
+      "id": "sessao-banco-x-usuario",
+      "pergunta": "Qual usuario do sistema esta por tras da sessao de banco?",
+      "responde": "Vincula a sessao do banco ao codigo de usuario e a thread do servidor de aplicacoes.",
+      "tipo": "objeto",
+      "origem": {"sqlserver": "checklist"},
+      "arquivos": {
+        "sqlserver": "sqlserver-2-sp_WhoIsActive_Skw2.sql"
+      },
+      "dependencia": {
+        "sqlserver": "sqlserver-1-sp_WhoIsActive.sql"
+      },
+      "lacuna": "Em Oracle, o vinculo sai do campo CLIENT_INFO nos scripts de sessoes ativas e de bloqueios."
+    }
+  ]
+}
