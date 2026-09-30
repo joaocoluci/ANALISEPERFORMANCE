@@ -206,7 +206,7 @@ Regras completas e justificativa no cabeçalho de `scripts/gerar_graficos.py`. E
 
 - cada gráfico sustenta uma frase do documento; sem isso, é ilustração e enfraquece o texto;
 - **nunca dois eixos y no mesmo plano** — duas escalas viram dois painéis;
-- série única ou ênfase, nunca paleta categórica (a paleta do Brandbook reprova nas
+- série única ou ênfase, nunca paleta categórica (a paleta do modelo 2026 reprova nas
   checagens categóricas; a saída é a forma, não uma cor de fora da marca);
 - verde só como linha de referência, sempre com rótulo em texto;
 - legenda quando há dois grupos; identidade nunca só na cor;

@@ -3,7 +3,7 @@
 Recebe o pacote de coleta de logs do Sankhya (`server.log_AAAAMMDDHHMMSS.zip`) e, quando
 vier junto, o pacote do Monitor de Consultas (`Monitoramento*.zip`), mede o que os pacotes
 permitem medir e entrega o documento **Análise de Performance** em DOCX, no padrão
-DSTECH v.3 — com as consultas ofensivas pontuadas, as consultas com erro e os pontos de
+DSTECH v.4 — com as consultas ofensivas pontuadas, as consultas com erro e os pontos de
 atenção em seção própria.
 
 Não estima horas e não escreve escopo. Aprovadas as ações, o orçamento é da

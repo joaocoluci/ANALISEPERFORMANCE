@@ -4,7 +4,7 @@ description: >
   Analisa o pacote de log do Sankhya (server.log_AAAAMMDDHHMMSS.zip) e, quando vier junto,
   o pacote do Monitor de Consultas (Monitoramento*.zip com Monitor_Consulta.log e
   Monitor_Processos.log), e gera o documento "Análise de Performance" em DOCX no padrão
-  DSTECH v.3 — ambiente, perfil de carga, gargalos com evidência, consultas ofensivas
+  DSTECH v.4 (Modelo de Documento Padrão Sankhya 2026) — ambiente, perfil de carga, gargalos com evidência, consultas ofensivas
   pontuadas, consultas com erro, gráficos e recomendações priorizadas. Acionar para
   "análise de performance", "diagnóstico de performance", "analisar o log do cliente",
   "o cliente está com lentidão", "abrir o pacote de log", "por que o Sankhya está lento",
@@ -313,7 +313,7 @@ sozinha, e quase tudo o que ela buscava já sai dos recortes hoje.
 `scripts/`: `coletar_metricas.py` (coletor do pacote de log), `coletar_monitor.py` (pacote
 do monitor e pontuação), `consultar.py` (recortes), `extrair_objetos.py` (entidade,
 serviço, URI e quadros de pilha por assinatura, ver 2.1), `gerar_graficos.py` (regras de
-visualização no cabeçalho), `gerar-diagnostico-docx.js` (DOCX DSTECH v.3),
+visualização no cabeçalho), `gerar-diagnostico-docx.js` (DOCX DSTECH v.4),
 `testar_sinais.py` (regressão dos detectores).
 
 `references/`: `estrutura-documento.md` (seções e regras de conteúdo),

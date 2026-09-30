@@ -1,7 +1,7 @@
 # Schema do JSON do documento
 
 Entrada de `scripts/gerar-diagnostico-docx.js`. O documento é dirigido por dados: o JSON
-descreve seções e blocos, o gerador aplica o layout DSTECH v.3. Não editar o gerador para
+descreve seções e blocos, o gerador aplica o layout DSTECH v.4. Não editar o gerador para
 acomodar um documento específico.
 
 Modelo completo em `examples/diagnostico-exemplo.json`.
@@ -26,8 +26,8 @@ Modelo completo em `examples/diagnostico-exemplo.json`.
 | `identificacao` | sim | tabela de duas colunas no corpo. Descreve a **análise** |
 | `secoes` | sim | na ordem em que aparecem |
 
-`cabecalho.versao` é a versão do documento. **`Data Revisão` não vem do JSON** — é a
-revisão do layout DSTECH, fixa no gerador.
+`cabecalho.versao` é a versão do documento e aparece na capa. **Versão e publicação do
+cabeçalho não vêm do JSON** — são do layout DSTECH v.4 (4.0, 30/09/2026), fixas no gerador.
 
 `identificacao` e `cabecalho` são tabelas distintas e não devem ser fundidas.
 
@@ -87,7 +87,7 @@ Heading 3 dentro da seção.
 | `monoCols` | índices em Consolas 9pt — para nome de objeto, código de erro, argumento |
 | `legenda` | linha em itálico cinza abaixo. **Toda tabela de número precisa dizer a fonte e o período** |
 
-Cabeçalho com fundo petróleo e texto branco; linhas ímpares em cinza. Automático. A
+Cabeçalho com fundo navy e texto branco; linhas ímpares em cinza. Automático. A
 tabela sai com layout fixo, e a linha não se parte entre páginas.
 
 **Célula com `\n` vira uma linha por item.** É como uma lista de objetos entra numa
@@ -95,7 +95,7 @@ coluna: empilhada, em vez de alargar a tabela inteira. Vale para qualquer coluna
 
 #### Largura de coluna
 
-`pesos` são proporções da largura útil da página, que é de **8506 DXA**. A conta que
+`pesos` são proporções da largura útil da página, que é de **9298 DXA**. A conta que
 importa: cada célula gasta **240 DXA** com as próprias margens, e **20 DXA valem 1 pt**.
 Uma coluna de 400 DXA tem 8 pt de texto útil, onde não cabe nem "10".
 
@@ -265,8 +265,8 @@ máximo e participação no tempo capturado.
 
 ## Severidade — por que sem cor
 
-O Brandbook Sankhya 2023 não tem vermelho, âmbar ou verde de status; o verde da marca é
-reservado a filete e barra. Introduzir uma paleta de semáforo no DOCX quebraria o padrão
+O Modelo de Documento Padrão Sankhya 2026 não tem vermelho, âmbar ou verde de status; o verde
+da marca é reservado a filete, barra e rótulo. Introduzir uma paleta de semáforo no DOCX quebraria o padrão
 visual dos demais documentos do Delivery Service Tech e não sobrevive à impressão P&B.
 
 A severidade aparece como texto ao lado do título e a ordenação do documento faz o resto:

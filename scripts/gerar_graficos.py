@@ -10,13 +10,13 @@ Cada grafico ancora um argumento do texto. Grafico que nao sustenta uma frase do
 documento nao entra: ilustracao sem tese e ruido caro de imprimir.
 
 Requer matplotlib. Saida: PNG a 200 dpi, largura fixa compativel com a area util
-do DOCX (15 cm).
+do DOCX (16,4 cm).
 
 --------------------------------------------------------------------- decisoes
 
-PALETA. Brandbook Sankhya 2023, sem cor de fora. O validador de paletas reprova
-este conjunto como paleta CATEGORICA (petroleo tem luminosidade 0,353, abaixo da
-banda, e croma 0,04, que le como cinza). A resposta certa nao e inventar uma cor
+PALETA. Modelo de Documento Padrao Sankhya 2026 (DSTECH v.4), sem cor de fora.
+O validador de paletas reprova este conjunto como paleta CATEGORICA (o navy tem
+luminosidade baixa e croma quase nulo, que le como cinza). A resposta certa nao e inventar uma cor
 vibrante fora da marca: e nao usar forma que precise de paleta categorica.
 
 Todo grafico aqui e serie unica ou enfase (um destaque + contexto em cinza). Para
@@ -26,7 +26,7 @@ esse uso, o par medido pelo validador passa nas tres checagens que importam:
     visao normal                DeltaE 25,5   PASS
     contraste vs superficie     >= 3:1        PASS
 
-VERDE. #66CC66 tem contraste 1,97:1 sobre branco. Reprova como preenchimento de
+VERDE. #00D666 tem contraste 1,9:1 sobre branco. Reprova como preenchimento de
 area e some na impressao em preto e branco. Entra so como linha fina de
 referencia, sempre acompanhada de rotulo em texto.
 
@@ -46,24 +46,33 @@ from coletar_metricas import obter_serie  # noqa: E402
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt          # noqa: E402
+from matplotlib import font_manager      # noqa: E402
 from matplotlib.ticker import FuncFormatter, MaxNLocator  # noqa: E402
 
 # ------------------------------------------------------------------ paleta
-NAVY = "#2E3C50"     # destaque, serie principal
-GREY = "#808285"     # contexto, referencia, serie secundaria
-GREEN = "#66CC66"    # so linha de referencia, sempre com rotulo
-GRID = "#EDEDED"     # grade, um tom acima da superficie
-INK = "#2E3C50"      # titulo
-LABEL = "#666666"    # eixos e rotulos secundarios
+NAVY = "#212F41"     # destaque, serie principal
+GREY = "#888888"     # contexto, referencia, serie secundaria
+GREEN = "#00D666"    # so linha de referencia, sempre com rotulo
+GRID = "#E4E4E4"     # grade, um tom acima da superficie
+INK = "#212F41"      # titulo
+LABEL = "#888888"    # eixos e rotulos secundarios
 SURFACE = "#FFFFFF"
 
-LARGURA_CM = 15.0
+# Work Sans e a fonte do documento; vem embutida em assets/fontes, porque a maquina
+# que gera o grafico raramente tem a fonte instalada.
+PASTA_FONTES = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "assets", "fontes")
+for _arquivo in ("WorkSans.ttf", "WorkSansSemiBold.ttf"):
+    _caminho = os.path.join(PASTA_FONTES, _arquivo)
+    if os.path.exists(_caminho):
+        font_manager.fontManager.addfont(_caminho)
+
+LARGURA_CM = 16.4
 LARGURA_IN = LARGURA_CM / 2.54
 DPI = 200
 
 plt.rcParams.update({
     "font.family": "sans-serif",
-    "font.sans-serif": ["Arial", "Liberation Sans", "DejaVu Sans"],
+    "font.sans-serif": ["Work Sans", "Arial", "DejaVu Sans"],
     "font.size": 8.5,
     "axes.edgecolor": GRID,
     "axes.labelcolor": LABEL,
